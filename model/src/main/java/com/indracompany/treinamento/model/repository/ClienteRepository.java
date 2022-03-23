@@ -7,6 +7,7 @@ import com.indracompany.treinamento.model.entity.Cliente;
 public interface ClienteRepository extends GenericCrudRepository<Cliente, Long>{
 	
 	List<Cliente> findByCpf(String cpf);
-	
+
+	List<Cliente> findByNome(String nome);
 
 }
