@@ -3,6 +3,9 @@ package com.indracompany.treinamento.model.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.websocket.ClientEndpoint;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import com.indracompany.treinamento.exception.AplicacaoException;
@@ -49,8 +52,7 @@ public class ClienteService extends GenericCrudService<Cliente, Long, ClienteRep
 		  List<ClienteDTO> retorno = new ArrayList<ClienteDTO>();
 		  for (Cliente c: clientes) {
 			  ClienteDTO dto = new ClienteDTO();
-			  dto.setEmail(c.getEmail());
-			  dto.setNome(c.getNome());
+			  BeanUtils.copyProperties(c, dto);
 			  retorno.add(dto);
 		  }
 		  return retorno;
