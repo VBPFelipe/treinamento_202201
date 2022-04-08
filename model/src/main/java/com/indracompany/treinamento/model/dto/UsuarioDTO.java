@@ -30,6 +30,4 @@ public class UsuarioDTO implements Serializable
     @JsonProperty("email")
     private String email;
 
-
-
 }

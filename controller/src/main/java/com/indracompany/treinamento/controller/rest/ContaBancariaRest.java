@@ -1,6 +1,9 @@
 package com.indracompany.treinamento.controller.rest;
 
 import com.indracompany.treinamento.model.dto.ConsultaContaBancariaDTO;
+import com.indracompany.treinamento.model.dto.DepositoDTO;
+import com.indracompany.treinamento.model.dto.SaqueDTO;
+import com.indracompany.treinamento.model.dto.TransferenciaBancariaDTO;
 import com.indracompany.treinamento.model.entity.ContaBancaria;
 import com.indracompany.treinamento.model.service.ContaBancariaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +36,22 @@ public class ContaBancariaRest extends GenericCrudRest<ContaBancaria, Long, Cont
         return new ResponseEntity<List<ConsultaContaBancariaDTO>>(contas, HttpStatus.OK);
     }
 
+    @PutMapping(value = "/deposito", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody ResponseEntity<Void> depositar(@RequestBody DepositoDTO dto){
+        contaBancariaService.depositar(dto.getAgencia(), dto.getNumeroConta(), dto.getValor());
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
 
+    @PutMapping(value = "/saque", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody ResponseEntity<Void> sacar(@RequestBody SaqueDTO dto){
+        contaBancariaService.sacar(dto.getAgencia(), dto.getNumeroConta(), dto.getValor());
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/transferencia", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody ResponseEntity<Void> sacar(@RequestBody TransferenciaBancariaDTO dto){
+        contaBancariaService.transferir(dto);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
 
 }

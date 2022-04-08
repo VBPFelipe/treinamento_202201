@@ -17,7 +17,7 @@ public class ContaBancariaRepositoryJdbc {
     private JdbcTemplate jdbcTemplate;
 
 
-    public List<ContaBancaria> buscarContasPorAgenciaouNumero(String agencia, String numeroConta){
+    public List<ContaBancaria> buscarContasPorAgenciaOuNumero(String agencia, String numeroConta){
 
         StringBuilder sql = new StringBuilder("select c.* from contas c ");
 
